@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Rafe Quiz</title>
+	<style>
+		.title {
+			font-size: 50px;
+			font-family: 'Courier New', monospace;
+			text-align: center;
+		}
+		
+		.button {
+			font-size: 25px;
+			font-family: 'Courier New', monospace;
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		
+		.button:hover {
+			background-color: #3e8e41;
+		}
+		
+		.question {
+			font-size: 20px;
+			font-family: 'Courier New', monospace;
+			margin-bottom: 20px;
+		}
+		
+		.choice {
+			font-size: 18px;
+			font-family: 'Courier New', monospace;
+			background-color: #f0f0f0;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-bottom: 10px;
+		}
+		
+		.choice:hover {
+			background-color: #e0e0e0;
+		}
+		
+		.score {
+			font-size: 30px;
+			font-family: 'Courier New', monospace;
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="title">The Rafe Quiz</div>
+	<button class="button" onclick="startQuiz()">Play</button>
+	
+	<div id="quiz" style="display: none;">
+		<div id="questions">
+			<div class="question">1. Which parent do I like better?</div>
+			<button class="choice" onclick="answerQuestion(1, 'MOTHER')">MOTHER</button>
+			<button class="choice" onclick="answerQuestion(1, 'FATHER')">FATHER</button>
+			
+			<div class="question">2. Which is my favorite food?</div>
+			<button class="choice" onclick="answerQuestion(2, 'Balatong')">Balatong</button>
+			<button class="choice" onclick="answerQuestion(2, 'Fried chicken')">Fried chicken</button>
+			
+			<div class="question">3. What is my favorite hobby?</div>
+			<button class="choice" onclick="answerQuestion(3, 'Skateboarding')">Skateboarding</button>
+			<button class="choice" onclick="answerQuestion(3, 'Running')">Running</button>
+			
+			<div class="question">4. What is my favorite phone?</div>
+			<button class="choice" onclick="answerQuestion(4, 'Android')">Android</button>
+			<button class="choice" onclick="answerQuestion(4, 'iOS')">iOS</button>
+			
+			<div class="question">5. Who is my favorite relative?</div>
+			<button class="choice" onclick="answerQuestion(5, 'Plongplong')">Plongplong</button>
+			<button class="choice" onclick="answerQuestion(5, 'Maria')">Maria</button>
+		</div>
+		<button class="button" id="done-button" style="display: none;" onclick="showScore()">Done</button>
+	</div>
+	
+	<div id="score" style="display: none;" class="score"></div>
+	
+	<script>
+		let answers = [];
+		let score = 0;
+		
+		function startQuiz() {
+			document.getElementById("quiz").style.display = "block";
+			document.querySelector(".button").style.display = "none";
+		}
+		
+		function answerQuestion(questionNumber, answer) {
+			answers[questionNumber - 1] = answer;
+			if (answers.length === 5) {
+				document.getElementById("done-button").style.display = "block";
+			}
+		}
+		
+		function showScore() {
+			if (answers[0] === "FATHER") score++;
+			if (answers[1] === "Balatong") score++;
+			if (answers[2] === "Skateboarding") score++;
+			if (answers[3] === "Android") score++;
+			if (answers[4] === "Plongplong") score++;
+			
+			document.getElementById("score").innerHTML = `Your score is ${score} out of 5`;
+			document.getElementById("score").style.display = "block";
+			document.getElementById("quiz").style.display = "none";
+		}
+	</script>
+</body>
+</html>
